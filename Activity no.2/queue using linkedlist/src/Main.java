@@ -25,6 +25,7 @@ public class Main {
         rear.info = info;
         rear.next = null;
         if(isempty()){
+
             front = rear;
         }else{
             oldnode.next = rear;
@@ -37,6 +38,7 @@ public class Main {
         int info = front.info;
         front = front.next;
         if(isempty()){
+            System.out.println("Queue is empty.");
             rear = null;
         }
         System.out.println("A number has been removed of the queue");
@@ -44,11 +46,22 @@ public class Main {
     }
 
     public static void front(){
-        System.out.println("Front is: "+front.info);
+        if(isempty()){
+            System.out.println("Queue is empty!");
+        }else{
+            System.out.println("Front is: "+front.info);
+        }
+
     }
 
     public static void rear(){
-        System.out.println("Rear is "+rear.info);
+        if(isempty()){
+            System.out.println("Queue is empty!");
+            
+        }else {
+            System.out.println("Rear is "+rear.info);
+        }
+
     }
 
     public static void print(){
