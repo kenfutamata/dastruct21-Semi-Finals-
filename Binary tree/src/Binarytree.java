@@ -31,39 +31,82 @@ public class Binarytree {
     }
 
     public void insertleft(int data){
-        root.left = new Node(data);
+        if (root == null) {
+            root = new Node(data);
+        } else {
+            root.left = insertleftelement(root.left, data);
+        }
+    }
+    public Node insertleftelement(Node node, int data){
+        if(node == null){
+            return new Node(data);
+        }
+        node.left=insertleftelement(node.left,data);
+        return node;
     }
     public void insertright(int data){
-        root.right = new Node(data);
-    }
-
-    private void inOrdertraversal(Node node){
-        if(node !=null){
-            inOrdertraversal(node.left);
-            System.out.print(node.data+" ");
-            inOrdertraversal(node.right);
+        if (root == null) {
+            root = new Node(data);
+        } else {
+            root.right = insertrightelement(root.right, data);
         }
     }
 
-    private void preOrdertraversal(Node node){
-        if (node!=null){
-            System.out.print(node.data+" ");
-            inOrdertraversal(node.left);
-            inOrdertraversal(node.right);
+    public Node insertrightelement(Node node, int data){
+        if (node == null) {
+            return new Node(data);
+        }
+
+        node.right = insertrightelement(node.right, data);
+        return node;
+    }
+
+    private void inOrdertraversal(Node root){
+
+        if(root !=null){
+            inOrdertraversal(root.left);
+            System.out.print(root.data+" ");
+            inOrdertraversal(root.right);
         }
     }
 
-    public void postOrdertraversal(Node node){
-        if (node!=null){
-            inOrdertraversal(node.left);
-            inOrdertraversal(node.right);
-            System.out.print(node.data+" ");
+    private void preOrdertraversal(Node root){
+
+        if (root!=null){
+            System.out.print(root.data+" ");
+            inOrdertraversal(root.left);
+            inOrdertraversal(root.right);
         }
     }
 
-    public void rootdisplay(){
-        System.out.println("Root is "+root);
+    public void postOrdertraversal(Node root){
+        if (root!=null){
+            inOrdertraversal(root.left);
+            inOrdertraversal(root.right);
+            System.out.print(root.data+" ");
+        }
     }
+/*
+    public void finalrootdisplay(){
+        try {
+            System.out.println("Roots of the display: ");
+            rootdisplay(root);
+        }
+        catch (Exception e){
+            System.out.println(e+" Invalid");
+        }
+    }
+
+    public void rootdisplay(Node node){
+
+       if(node.left == null && node.right == null){
+           System.out.println(node.data);
+       }
+       rootdisplay(node.left);
+       rootdisplay(node.right);
+    }
+
+ */
     public void root(){
         //enters the root first before inputting the rest of the root below
         System.out.println("Enter the value for the root: ");
@@ -119,7 +162,7 @@ public class Binarytree {
             System.out.println();
         }
         else if (choose == 3){
-           rootdisplay();
+           //finalrootdisplay();
         }
         else if(choose == 4){
 
