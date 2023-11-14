@@ -86,7 +86,7 @@ public class Binarytree {
             System.out.print(root.data+" ");
         }
     }
-/*
+
     public void finalrootdisplay(){
         try {
             System.out.println("Roots of the display: ");
@@ -99,20 +99,47 @@ public class Binarytree {
 
     public void rootdisplay(Node node){
 
-       if(node.left == null && node.right == null){
-           System.out.println(node.data);
-       }
-       rootdisplay(node.left);
-       rootdisplay(node.right);
+        if (node == null) {
+            return;
+        }
+
+        // Check if the current node is a root (no parent or no siblings)
+        if ((node.left == null && node.right == null) || (node.left == null || node.right == null)) {
+            System.out.println(node.data);
+        }
+        rootdisplay(node.left);
+        rootdisplay(node.right);
     }
 
- */
+
     public void root(){
         //enters the root first before inputting the rest of the root below
         System.out.println("Enter the value for the root: ");
         int rootvalue = input.nextInt();
         setRoot(rootvalue);
         menu();
+    }
+
+    public void displayleaves(){
+        System.out.println("Leaves of the binary tree: ");
+        leaves(root);
+    }
+
+    public void leaves(Node node){
+        if (node == null) {
+            return;
+        }
+
+        // Check if the current node is a leaf
+        if (node.left == null && node.right == null) {
+            System.out.print(node.data+" ");
+            System.out.println();
+        }
+
+        // Recursively check the left and right subtrees
+        leaves(node.left);
+        leaves(node.right);
+
     }
     public void menu(){
         try {
@@ -162,10 +189,10 @@ public class Binarytree {
             System.out.println();
         }
         else if (choose == 3){
-           //finalrootdisplay();
+           finalrootdisplay();
         }
         else if(choose == 4){
-
+            displayleaves();
         }
         else if (choose == 5) {
             System.exit(0);
